@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Report</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+        <input type="submit" value="Sign Out">
+    </form>
+    <hr>
+    <a href="/home"> Home</a>
+    ○
+    <a href="/order"> Make Order</a>
+    ○
+    <a href="/about"> About Us</a>
+    ○
+    <a href="/administration">For Administration</a>
+    <hr>
+    {{#message}}
+        {{message}}
+    {{/message}}
+
+    <a href="/report/all">Show report for all time</a>
+    <a href="/report/predict">Predict report</a>
+    <br>
+    <form action="/report/concrete" method="post">
+        <label for="dateFrom"> From : </label>
+        <input type="date" name="dateFrom">
+
+        <label for="dateTo"> To : </label>
+        <input type="date" name="dateTo">
+
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+        <input type="submit" value=" Show report for given dates">
+    </form>
+
+    {{#report}}
+        <p>Report for period from {{report.dateFrom}} to {{report.dateTo}}</p>
+        <p>The num of orders is {{report.ordersNum}}</p>
+        {{#report.mostReservedRoom}}
+            <p>The most reserved room is #{{report.mostReservedRoom.num}}</p>
+            <p>The most reserved room type is {{report.mostReservedRoomType}}</p>
+        {{/report.mostReservedRoom}}
+        <p>Earnings : {{report.earnings}}$</p>
+        <p>Salary Payments : {{report.salaryPayments}}$</p>
+        <p>Other Payments : {{report.otherPayments}}$</p>
+        <p>Profit : {{profit}}$</p>
+        {{#kef}}
+            <p>Liquid kef : {{kef}}</p>
+            <p>{{kefExpl}}</p>
+        {{/kef}}
+    {{/report}}
+
+</body>
+</html>
+

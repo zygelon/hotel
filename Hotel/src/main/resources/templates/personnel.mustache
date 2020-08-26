@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Personnel</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form action="/logout" method="post">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+    <input type="submit" value="Sign Out">
+</form>
+<hr>
+<a href="/home"> Home</a>
+○
+<a href="/order"> Make Order</a>
+○
+<a href="/about"> About Us</a>
+○
+<a href="/administration">For Administration</a>
+<hr>
+{{#message}}
+    {{message}}
+{{/message}}
+
+{{#salary}}
+    Month personnel salary is : {{salary}}
+{{/salary}}
+
+<a href="/personnel/salary">Calculate month personnel salary</a>
+<br>
+
+<h2>Add new worker</h2>
+<form action="/personnel/add" method="post">
+    <label for="firstName">First Name</label>
+    <input type="text" placeholder="FirstName..." name="firstName">
+
+    <label for="lastName">Last Name</label>
+    <input type="text" placeholder="LastName..." name="lastName">
+
+    <label for="age">Age</label>
+    <input type="number" min="15" max="100" name="age">
+
+    <label for="phone">Phone</label>
+    <input type="text" placeholder="+380..." name="phone">
+
+    <label for="passport">Passport</label>
+    <input type="text" name="passport">
+
+    <label for="salary">Salary</label>
+    <input type="number" min="1" max="1000000" name="salary">
+
+    <label for="role">Role</label>
+    <select name="role">
+        <option value="CLEANER">CLEANER</option>
+        <option value="COOK">COOK</option>
+        <option value="MANAGER">MANAGER</option>
+        <option value="ADMINISTRATOR">ADMINISTRATOR</option>
+    </select>
+
+    <label for="workStart">Work start date</label>
+    <input type="date" name="workStart">
+
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+    <input type="submit" value="Add new worker">
+</form>
+
+<a href="/personnel/all">Show all workers</a>
+<br>
+<table>
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>FirstName</td>
+        <td>LastName</td>
+        <td>Age</td>
+        <td>Phone</td>
+        <td>Salary</td>
+        <td>Role</td>
+        <td>Passport Num</td>
+        <td>Work start date</td>
+    </tr>
+    </thead>
+    {{#personnel}}
+        <tr>
+            <td>{{firstName}}</td>
+            <td>{{lastName}}</td>
+            <td>{{age}}</td>
+            <td>{{phone}}</td>
+            <td>{{salary}}</td>
+            <td>{{role}}</td>
+            <td>{{passportNum}}</td>
+            <td>{{workStart}}</td>
+            <td>{{id}} <a href="/personnel/remove/{{id}}"> Dismiss</a></td>
+        </tr>
+    {{/personnel}}
+</table>
+</body>
+</html>
+

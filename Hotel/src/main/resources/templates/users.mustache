@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Users</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form action="/logout" method="post">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+    <input type="submit" value="Sign Out">
+</form>
+<hr>
+<a href="/home"> Home</a>
+○
+<a href="/order"> Make Order</a>
+○
+<a href="/about"> About Us</a>
+○
+<a href="/administration">For Administration</a>
+<hr>
+{{#message}}
+    {{message}}
+{{/message}}
+<h2>Users</h2>
+<br>
+<table>
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Username</td>
+        <td>FirstName</td>
+        <td>LastName</td>
+        <td>Email</td>
+        <td>Active</td>
+    </tr>
+    </thead>
+    {{#users}}
+        <tr>
+            <td>{{userId}}</td>
+            <td>{{username}}</td>
+            <td>{{firstName}}</td>
+            <td>{{lastName}}</td>
+            <td>{{email}}</td>
+            <td><a href="/users/orders/{{userId}}"> Show Orders</a></td>
+        </tr>
+    {{/users}}
+</table>
+</body>
+</html>
+

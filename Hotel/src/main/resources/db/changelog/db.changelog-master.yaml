@@ -1,0 +1,276 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-lesson1.yaml
+  - changeSet:
+      id: 1
+      author: stas
+      changes:
+        - createTable:
+            tableName: orders
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: date_from
+                  type: date
+              - column:
+                  name: date_to
+                  type: date
+              - column:
+                  name: user_id
+                  type: bigint
+              - column:
+                  name: room_id
+                  type: bigint
+        - createTable:
+            tableName: rooms
+            columns:
+              - column:
+                  name: room_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: num
+                  type: varchar(255)
+              - column:
+                  name: occupancy
+                  type: int
+              - column:
+                  name: price
+                  type: int
+              - column:
+                  name: type
+                  type: varchar(255)
+        - createTable:
+            tableName: personnel
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: age
+                  type: int
+              - column:
+                  name: first_name
+                  type: varchar(255)
+              - column:
+                  name: last_name
+                  type: varchar(255)
+              - column:
+                  name: passport_num
+                  type: varchar(255)
+              - column:
+                  name: phone
+                  type: varchar(255)
+              - column:
+                  name: role
+                  type: varchar(255)
+              - column:
+                  name: salary
+                  type: int
+              - column:
+                  name: work_start
+                  type: date
+        - createTable:
+            tableName: user_role
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: roles
+                  type: varchar(255)
+        - createTable:
+            tableName: usr
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(255)
+              - column:
+                  name: first_name
+                  type: varchar(255)
+              - column:
+                  name: last_name
+                  type: varchar(255)
+              - column:
+                  name: username
+                  type: varchar(255)
+  - changeSet:
+      id: 3
+      author: stas
+      comment: "Insert some personnel"
+      changes:
+        - insert:
+            tableName: personnel
+            columns:
+              - column:
+                  name: id
+                  value: "1"
+              - column:
+                  name: salary
+                  value: "100"
+              - column:
+                  name: age
+                  value: "20"
+              - column:
+                  name: first_name
+                  value: "Ivanna"
+              - column:
+                  name: last_name
+                  value: "Zavadetska"
+              - column:
+                  name: phone
+                  value: "+380951111111"
+              - column:
+                  name: role
+                  value: "COOK"
+              - column:
+                  name: passport_num
+                  value: "12345"
+              - column:
+                  name: work_start
+                  value: "01-MAY-20"
+
+        - insert:
+            tableName: personnel
+            columns:
+              - column:
+                  name: id
+                  value: "2"
+              - column:
+                  name: salary
+                  value: "200"
+              - column:
+                  name: age
+                  value: "20"
+              - column:
+                  name: first_name
+                  value: "Oleh"
+              - column:
+                  name: last_name
+                  value: "Boichuk"
+              - column:
+                  name: phone
+                  value: "+38095222222"
+              - column:
+                  name: passport_num
+                  value: "54321"
+              - column:
+                  name: role
+                  value: "MANAGER"
+              - column:
+                  name: work_start
+                  value: "15-APR-20"
+  - changeSet:
+      id: 4
+      author: stas
+      comment: "Insert some rooms"
+      changes:
+        - insert:
+            tableName: rooms
+            columns:
+              - column:
+                  name: occupancy
+                  value: "1"
+              - column:
+                  name: room_id
+                  value: "1"
+              - column:
+                  name: type
+                  value: "LUXURY"
+              - column:
+                  name: price
+                  value: "300"
+              - column:
+                  name: num
+                  value: "1"
+        - insert:
+            tableName: rooms
+            columns:
+              - column:
+                  name: occupancy
+                  value: "2"
+              - column:
+                  name: room_id
+                  value: "2"
+              - column:
+                  name: type
+                  value: "STANDARD"
+              - column:
+                  name: price
+                  value: "150"
+              - column:
+                  name: num
+                  value: "2"
+        - insert:
+            tableName: rooms
+            columns:
+              - column:
+                  name: occupancy
+                  value: "3"
+              - column:
+                  name: room_id
+                  value: "3"
+              - column:
+                  name: type
+                  value: "ECONOMIC"
+              - column:
+                  name: price
+                  value: "120"
+              - column:
+                  name: num
+                  value: "3"
+  - changeSet:
+      id: 5
+      author: stas
+      comment: "Add report table"
+      changes:
+        - createTable:
+            tableName: reports
+            columns:
+              - column:
+                  name: report_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: date_from
+                  type: date
+              - column:
+                  name: date_to
+                  type: date
+              - column:
+                  name: room_id
+                  type: bigint
+              - column:
+                  name: most_reserved_room_type
+                  type: varchar(255)
+              - column:
+                  name: earnings
+                  type: int
+              - column:
+                  name: salary_payments
+                  type: int
+              - column:
+                  name: other_payments
+                  type: int
+              - column:
+                  name: orders_num
+                  type: int

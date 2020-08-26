@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Suitable rooms</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form action="/logout" method="post">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+    <input type="submit" value="Sign Out">
+</form>
+<hr>
+<a href="/home"> Home</a>
+○
+<a href="/order"> Make Order</a>
+○
+<a href="/about"> About Us</a>
+○
+<a href="/administration">For Administration</a>
+<hr>
+<table>
+<thead>
+<tr>
+    <td>Id</td>
+    <td>Number</td>
+    <td>Occupancy</td>
+    <td>Price</td>
+    <td>Type</td>
+</tr>
+</thead>
+{{#rooms}}
+    <tr>
+        <td>{{roomId}}</td>
+        <td>{{num}}</td>
+        <td>{{occupancy}}</td>
+        <td>{{price}}</td>
+        <td>{{type}}</td>
+        <td><a href="/order/{{roomId}}?dateFrom={{dateFrom}}&dateTo={{dateTo}}">Reserve</a></td>
+    </tr>
+{{/rooms}}
+</table>
+
+</body>
+</html>

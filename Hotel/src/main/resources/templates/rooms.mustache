@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Rooms</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form action="/logout" method="post">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+    <input type="submit" value="Sign Out">
+</form>
+<hr>
+<a href="/home"> Home</a>
+○
+<a href="/order"> Make Order</a>
+○
+<a href="/about"> About Us</a>
+○
+<a href="/administration">For Administration</a>
+<hr>
+{{#message}}
+    {{message}}
+{{/message}}
+<h2>Add new room</h2>
+<form action="/rooms/add" method="post">
+    <label for="number">Number</label>
+    <input type="text" placeholder="Room number..." name="number">
+
+    <label for="price">Price</label>
+    <input type="number" min="1" name="price">
+
+    <label for="occupancy">Occupancy</label>
+    <input type="number" min="1" max="4" name="occupancy">
+
+    <label for="type">Type</label>
+    <select name="type">
+        <option value="ECONOMIC">ECONOMIC</option>
+        <option value="STANDARD">STANDARD</option>
+        <option value="LUXURY">LUXURY</option>
+    </select>
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+    <input type="submit" value="Add new room">
+</form>
+
+<a href="/rooms/all">Show all rooms</a>
+<br>
+<table>
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Number</td>
+            <td>Occupancy</td>
+            <td>Price</td>
+            <td>Type</td>
+        </tr>
+    </thead>
+    {{#rooms}}
+    <tr>
+        <td>{{roomId}}</td>
+        <td>{{num}}</td>
+        <td>{{occupancy}}</td>
+        <td>{{price}}</td>
+        <td>{{type}}</td>
+        <td><a href="/rooms/remove/{{roomId}}"> Remove</a></td>
+    </tr>
+    {{/rooms}}
+</table>
+</body>
+</html>
+

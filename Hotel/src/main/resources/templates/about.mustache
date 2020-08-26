@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>About</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+        <input type="submit" value="Sign Out">
+    </form>
+    <hr>
+    <a href="/order">Make Order</a>
+    ○
+    <a href="/administration">For Administration</a>
+    ○
+    <a href="/users/orders">My Orders</a>
+    <hr>
+    <p>Information about us...</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Orders</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<form action="/logout" method="post">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}">
+    <input type="submit" value="Sign Out">
+</form>
+<hr>
+<a href="/home"> Home</a>
+○
+<a href="/order"> Make Order</a>
+○
+<a href="/about"> About Us</a>
+○
+<a href="/administration">For Administration</a>
+<hr>
+{{#message}}
+    {{message}}
+{{/message}}
+<a href="/orders/all">Show all orders</a>
+<a href="/orders/active">Show active orders</a>
+<h2>Orders</h2>
+<br>
+<p>There are {{ordersNum}} orders : </p>
+<table>
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>From</td>
+        <td>To</td>
+        <td>Room</td>
+        <td>Username</td>
+    </tr>
+    </thead>
+    {{#orders}}
+        <tr>
+            <td>{{id}}</td>
+            <td>{{dateFrom}}</td>
+            <td>{{dateTo}}</td>
+            <td>{{room.num}}</td>
+            <td>{{user.username}}</td>
+            <td><a href="/users/{{user.userId}}"> User page</a></td>
+        </tr>
+    {{/orders}}
+
+    {{#totalPrice}}
+        <p> You will receive {{totalPrice}}$ for these orders.</p>
+    {{/totalPrice}}
+</table>
+</body>
+</html>
+
